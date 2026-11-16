@@ -45,6 +45,19 @@ class OutputConfig(BaseModel):
     model_dir: Path
 
 
+class TrackingConfig(BaseModel):
+    """Local MLflow tracking. The registry needs a SQL store, so the default URI is SQLite."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    enabled: bool = False
+    tracking_uri: str = "sqlite:///mlruns/mlflow.db"
+    artifact_root: Path = Path("mlruns/artifacts")
+    experiment_name: str = "germany-daily-load"
+    registered_model_name: str = "germany-daily-load"
+    run_name: str = "holdout-backtest"
+
+
 class TrainConfig(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -54,6 +67,7 @@ class TrainConfig(BaseModel):
     fast: bool = False
     alpha: float = Field(default=0.1, gt=0, lt=1)
     output: OutputConfig
+    tracking: TrackingConfig = Field(default_factory=TrackingConfig)
 
     @model_validator(mode="after")
     def unique_model_types(self) -> Self:
@@ -87,6 +101,9 @@ def resolve_paths(config: TrainConfig, base_dir: Path | None = None) -> TrainCon
                     "reports_dir": resolve(config.output.reports_dir),
                     "model_dir": resolve(config.output.model_dir),
                 }
+            ),
+            "tracking": config.tracking.model_copy(
+                update={"artifact_root": resolve(config.tracking.artifact_root)}
             ),
         }
     )

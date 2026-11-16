@@ -10,6 +10,7 @@ def test_repository_configs_validate(monkeypatch):
     train = load_config(ROOT / "configs" / "train.yaml")
     ci = load_config(ROOT / "configs" / "ci.yaml")
     assert train.fast is False
+    assert train.tracking.enabled is True
     assert {item.model_type for item in train.search} == {"xgboost", "lightgbm"}
     assert ci.fast is True
     assert ci.search[0].n_trials <= 3

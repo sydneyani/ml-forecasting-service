@@ -21,3 +21,10 @@ alpha: 0.1
 output:
   reports_dir: reports
   model_dir: models/champion
+tracking:
+  enabled: true
+  tracking_uri: sqlite:///mlruns/mlflow.db
+  artifact_root: mlruns/artifacts
+  experiment_name: germany-daily-load
+  registered_model_name: germany-daily-load
+  run_name: holdout-backtest

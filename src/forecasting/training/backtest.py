@@ -542,8 +542,14 @@ def main(argv: list[str] | None = None) -> None:
                 ]
             }
         )
-    result = run_backtest(resolve_paths(config))
+    resolved = resolve_paths(config)
+    result = run_backtest(resolved)
     print(format_summary(result))
+    if resolved.tracking.enabled:
+        from forecasting.tracking.registry import log_champion
+
+        run_id = log_champion(resolved.output.model_dir, resolved.tracking, result)
+        print(f"MLflow run: {run_id}")
 
 
 if __name__ == "__main__":

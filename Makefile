@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: install lint test train train-ci download
+.PHONY: install lint test train train-ci download register serve
 
 install:
 	$(PYTHON) -m pip install -e ".[dev]"
@@ -20,3 +20,9 @@ train:
 
 train-ci:
 	$(PYTHON) -m forecasting.training --config configs/ci.yaml
+
+register:
+	$(PYTHON) -m forecasting.tracking.register
+
+serve:
+	$(PYTHON) -m forecasting.serving

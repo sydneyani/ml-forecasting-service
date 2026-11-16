@@ -21,9 +21,14 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-train = ["optuna>=4.0"]
+train = ["optuna>=4,<6", "mlflow>=3.1,<4"]
+serve = ["fastapi>=0.115", "uvicorn>=0.32"]
 dev = [
-    "optuna>=4.0",
+    "optuna>=4,<6",
+    "mlflow>=3.1,<4",
+    "fastapi>=0.115",
+    "uvicorn>=0.32",
+    "httpx>=0.27",
     "pytest>=8.3",
     "ruff>=0.7",
 ]
@@ -31,6 +36,8 @@ dev = [
 [project.scripts]
 forecast-train = "forecasting.training.backtest:main"
 forecast-download = "forecasting.data.download:main"
+forecast-register = "forecasting.tracking.register:main"
+forecast-serve = "forecasting.serving.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -38,6 +45,9 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --tb=short"
+filterwarnings = [
+    "ignore:Using `httpx` with `starlette.testclient`:DeprecationWarning",
+]
 
 [tool.ruff]
 line-length = 100
