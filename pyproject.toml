@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-forecasting-service"
+version = "0.1.0"
+description = "Day-ahead German electricity load forecasting service"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Sydney Ani" }]
+dependencies = [
+    "pandas>=2.2,<3.2",
+    "numpy>=1.26,<3",
+    "scikit-learn>=1.5,<2",
+    "xgboost==3.4.1",
+    "lightgbm==4.7.0",
+    "holidays>=0.50,<1",
+    "pyyaml>=6,<7",
+    "pydantic>=2.9,<3",
+]
+
+[project.optional-dependencies]
+train = ["optuna>=4.0"]
+dev = [
+    "optuna>=4.0",
+    "pytest>=8.3",
+    "ruff>=0.7",
+]
+
+[project.scripts]
+forecast-train = "forecasting.training.backtest:main"
+forecast-download = "forecasting.data.download:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["forecasting"]
