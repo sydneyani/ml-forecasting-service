@@ -1,0 +1,218 @@
+{
+  "method": "population_stability_index",
+  "threshold": 0.2,
+  "reference_split": "develop",
+  "current_split": "test",
+  "reference_start": "2006-12-31",
+  "reference_end": "2016-10-02",
+  "current_start": "2017-01-01",
+  "current_end": "2017-12-31",
+  "n_reference": 3564,
+  "n_current": 365,
+  "n_alerts": 6,
+  "alerts": [
+    "consumption_roll_mean_14",
+    "consumption_roll_mean_28",
+    "consumption_roll_mean_7",
+    "wind_lag_1",
+    "wind_lag_7",
+    "consumption_lag_364"
+  ],
+  "features": [
+    {
+      "feature": "consumption_roll_mean_14",
+      "psi": 2.486748127212493,
+      "alert": true
+    },
+    {
+      "feature": "consumption_roll_mean_28",
+      "psi": 2.460264857963349,
+      "alert": true
+    },
+    {
+      "feature": "consumption_roll_mean_7",
+      "psi": 1.4563734993926034,
+      "alert": true
+    },
+    {
+      "feature": "wind_lag_1",
+      "psi": 0.7556633313916805,
+      "alert": true
+    },
+    {
+      "feature": "wind_lag_7",
+      "psi": 0.7475663567624848,
+      "alert": true
+    },
+    {
+      "feature": "consumption_lag_364",
+      "psi": 0.2577559815475786,
+      "alert": true
+    },
+    {
+      "feature": "consumption_roll_std_28",
+      "psi": 0.18143317023973315,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_7",
+      "psi": 0.14535826143563568,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_21",
+      "psi": 0.14501800093130782,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_14",
+      "psi": 0.1445808357544398,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_3",
+      "psi": 0.14364240239407702,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_1",
+      "psi": 0.14304177246613603,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_28",
+      "psi": 0.1421866206293629,
+      "alert": false
+    },
+    {
+      "feature": "consumption_lag_2",
+      "psi": 0.14133186066221448,
+      "alert": false
+    },
+    {
+      "feature": "solar_lag_1",
+      "psi": 0.11025139244796456,
+      "alert": false
+    },
+    {
+      "feature": "solar_lag_7",
+      "psi": 0.10940373882503085,
+      "alert": false
+    },
+    {
+      "feature": "consumption_roll_std_14",
+      "psi": 0.0844827057386294,
+      "alert": false
+    },
+    {
+      "feature": "consumption_roll_std_7",
+      "psi": 0.05944037774548478,
+      "alert": false
+    },
+    {
+      "feature": "dayofyear",
+      "psi": 0.0016421264629237291,
+      "alert": false
+    },
+    {
+      "feature": "month_11",
+      "psi": 0.0005694451741106865,
+      "alert": false
+    },
+    {
+      "feature": "month_12",
+      "psi": 0.0005404861935204326,
+      "alert": false
+    },
+    {
+      "feature": "month_10",
+      "psi": 0.0004931155667608829,
+      "alert": false
+    },
+    {
+      "feature": "is_holiday",
+      "psi": 0.0004258059931600937,
+      "alert": false
+    },
+    {
+      "feature": "month_2",
+      "psi": 0.00010077065353850989,
+      "alert": false
+    },
+    {
+      "feature": "month_1",
+      "psi": 5.346058605787014e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_3",
+      "psi": 5.346058605787014e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_5",
+      "psi": 5.346058605787014e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_7",
+      "psi": 5.346058605787014e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_8",
+      "psi": 5.346058605787014e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_4",
+      "psi": 5.1579589299844445e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_6",
+      "psi": 5.1579589299844445e-05,
+      "alert": false
+    },
+    {
+      "feature": "month_9",
+      "psi": 5.1579589299844445e-05,
+      "alert": false
+    },
+    {
+      "feature": "dow_6",
+      "psi": 3.601340810802335e-05,
+      "alert": false
+    },
+    {
+      "feature": "dow_0",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    },
+    {
+      "feature": "dow_1",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    },
+    {
+      "feature": "dow_2",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    },
+    {
+      "feature": "dow_3",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    },
+    {
+      "feature": "dow_4",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    },
+    {
+      "feature": "dow_5",
+      "psi": 1.0091677236009952e-06,
+      "alert": false
+    }
+  ]
+}

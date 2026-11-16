@@ -1,0 +1,18 @@
+# Fast path for CI and smoke runs. Same protocol as configs/train.yaml, fewer trials.
+data:
+  csv_path: data/raw/opsd_germany_daily.csv
+  test_days: 90
+  calibration_days: 30
+cv:
+  n_splits: 2
+  valid_days: 30
+  min_train_days: 400
+search:
+  - model_type: xgboost
+    n_trials: 2
+    seed: 7
+fast: true
+alpha: 0.1
+output:
+  reports_dir: reports/ci
+  model_dir: models/ci

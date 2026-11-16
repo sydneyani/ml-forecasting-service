@@ -1,0 +1,4 @@
+* text=auto eol=lf
+data/raw/*.csv linguist-generated
+models/** linguist-generated
+reports/** linguist-generated

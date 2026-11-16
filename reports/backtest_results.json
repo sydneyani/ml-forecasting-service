@@ -1,0 +1,217 @@
+{
+  "dataset": "OPSD Germany daily electricity",
+  "target": "consumption",
+  "target_unit": "GWh",
+  "horizon_days": 1,
+  "selection_rule": "Lowest mean MAE on expanding-window cross-validation inside the development period. Ties break toward xgboost. Calibration residuals set the interval width. The test period is scored after the champion is fixed.",
+  "champion_model_type": "xgboost",
+  "model_version": "5828f2d8d5a4",
+  "model_sha256": "5828f2d8d5a45165a7345738824249bbb25a48dd8f2042e7d6042518d189111c",
+  "data_sha256": "729b025d984497827cb6b89048d7c2c6a551e7aa727bc47ea0b74a2d1e84675d",
+  "trained_at": "2026-11-16T17:19:42+00:00",
+  "rows": {
+    "raw": 4383,
+    "supervised": 4019,
+    "develop": 3564,
+    "calibration": 90,
+    "test": 365
+  },
+  "splits": {
+    "develop_start": "2006-12-31",
+    "develop_end": "2016-10-02",
+    "calibration_start": "2016-10-03",
+    "calibration_end": "2016-12-31",
+    "test_start": "2017-01-01",
+    "test_end": "2017-12-31"
+  },
+  "cv_folds": [
+    {
+      "fold": 1,
+      "train_start": "2006-12-31",
+      "train_end": "2015-10-08",
+      "valid_start": "2015-10-09",
+      "valid_end": "2016-01-06",
+      "n_train": 3204,
+      "n_valid": 90
+    },
+    {
+      "fold": 2,
+      "train_start": "2006-12-31",
+      "train_end": "2016-01-06",
+      "valid_start": "2016-01-07",
+      "valid_end": "2016-04-05",
+      "n_train": 3294,
+      "n_valid": 90
+    },
+    {
+      "fold": 3,
+      "train_start": "2006-12-31",
+      "train_end": "2016-04-05",
+      "valid_start": "2016-04-06",
+      "valid_end": "2016-07-04",
+      "n_train": 3384,
+      "n_valid": 90
+    },
+    {
+      "fold": 4,
+      "train_start": "2006-12-31",
+      "train_end": "2016-07-04",
+      "valid_start": "2016-07-05",
+      "valid_end": "2016-10-02",
+      "n_train": 3474,
+      "n_valid": 90
+    }
+  ],
+  "baselines": {
+    "naive_lag_1": {
+      "lag": 1,
+      "test": {
+        "mae": 102.33693430136984,
+        "rmse": 149.15777211773974,
+        "mape": 7.728691831572373
+      }
+    },
+    "seasonal_naive_lag_7": {
+      "lag": 7,
+      "test": {
+        "mae": 54.10362772602741,
+        "rmse": 96.69933348065506,
+        "mape": 4.041963934357527
+      }
+    },
+    "seasonal_naive_lag_364": {
+      "lag": 364,
+      "test": {
+        "mae": 34.6777480821918,
+        "rmse": 63.83230695856712,
+        "mape": 2.597487138831003
+      }
+    }
+  },
+  "models": {
+    "xgboost": {
+      "role": "champion",
+      "seed": 42,
+      "params": {
+        "n_estimators": 356,
+        "max_depth": 6,
+        "learning_rate": 0.04194489237930539,
+        "min_child_weight": 7.693053814870443,
+        "subsample": 0.7134637463522657,
+        "colsample_bytree": 0.7454075714297895,
+        "reg_lambda": 0.03609411725955098,
+        "gamma": 4.683632197072032
+      },
+      "cv_mae": 15.310894712999117,
+      "cv_mae_std": 3.8111442001615563,
+      "fold_maes": [
+        16.43757709418398,
+        19.56939090711802,
+        14.817189594184045,
+        10.419421256510425
+      ],
+      "test": {
+        "mae": 18.15953924250857,
+        "rmse": 25.65885966167121,
+        "mape": 1.3322422962313432
+      }
+    },
+    "lightgbm": {
+      "role": "challenger",
+      "seed": 43,
+      "params": {
+        "n_estimators": 175,
+        "learning_rate": 0.04938072948746452,
+        "num_leaves": 47,
+        "min_child_samples": 10,
+        "subsample": 0.8552809944671874,
+        "colsample_bytree": 0.6805062445308684,
+        "reg_lambda": 0.029177308029775216
+      },
+      "cv_mae": 15.783283268542698,
+      "cv_mae_std": 4.519806317129442,
+      "fold_maes": [
+        17.46320956739302,
+        20.958863219469958,
+        14.3776805169831,
+        10.333379770324719
+      ],
+      "test": {
+        "mae": 18.281825251795194,
+        "rmse": 26.18647130898921,
+        "mape": 1.343022368148717
+      }
+    }
+  },
+  "mae_ratio_vs_seasonal_naive_lag_7": 0.33564365285199965,
+  "mae_skill_vs_seasonal_naive_lag_7": 0.6643563471480003,
+  "mae_ratio_vs_seasonal_naive_lag_364": 0.5236654698415699,
+  "mae_skill_vs_seasonal_naive_lag_364": 0.4763345301584301,
+  "mean_error_gwh": -3.498747873929793,
+  "interval": {
+    "method": "split_conformal_absolute_residual",
+    "level": 0.9,
+    "alpha": 0.1,
+    "calibration_size": 90,
+    "rank": 82,
+    "q_hat": 47.740851562499984,
+    "mean_width": 95.48170312499997,
+    "test_coverage": 0.9452054794520548
+  },
+  "runtime_seconds": 60.63308049400007,
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.12.113+-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Xeon(R) Processor"
+  },
+  "library_versions": {
+    "pandas": "3.1.1",
+    "numpy": "2.5.5",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "lightgbm": "4.7.0",
+    "optuna": "5.1.0",
+    "holidays": "0.108"
+  },
+  "config": {
+    "data": {
+      "csv_path": "data/raw/opsd_germany_daily.csv",
+      "test_days": 365,
+      "calibration_days": 90
+    },
+    "cv": {
+      "n_splits": 4,
+      "valid_days": 90,
+      "min_train_days": 730
+    },
+    "search": [
+      {
+        "model_type": "xgboost",
+        "n_trials": 30,
+        "seed": 42
+      },
+      {
+        "model_type": "lightgbm",
+        "n_trials": 20,
+        "seed": 43
+      }
+    ],
+    "fast": false,
+    "alpha": 0.1,
+    "output": {
+      "reports_dir": "reports",
+      "model_dir": "models/champion"
+    }
+  },
+  "artifacts": {
+    "report_path": "reports/backtest_results.json",
+    "predictions_path": "reports/test_predictions.csv",
+    "trials_path": "reports/optuna_trials.csv",
+    "importance_path": "reports/feature_importance.csv",
+    "metrics_by_dow_path": "reports/metrics_by_dow.csv",
+    "metrics_by_month_path": "reports/metrics_by_month.csv",
+    "model_dir": "models/champion",
+    "model_path": "models/champion/model.json",
+    "metadata_path": "models/champion/metadata.json"
+  }
+}

@@ -1,0 +1,30 @@
+# Full backtest. Paths are relative to the repository root.
+# The last test_days of the supervised series are scored once, after model selection.
+# The calibration_days before that set the conformal interval width and are not fit on.
+data:
+  csv_path: data/raw/opsd_germany_daily.csv
+  test_days: 365
+  calibration_days: 90
+cv:
+  n_splits: 4
+  valid_days: 90
+  min_train_days: 730
+search:
+  - model_type: xgboost
+    n_trials: 30
+    seed: 42
+  - model_type: lightgbm
+    n_trials: 20
+    seed: 43
+fast: false
+alpha: 0.1
+output:
+  reports_dir: reports
+  model_dir: models/champion
+tracking:
+  enabled: true
+  tracking_uri: sqlite:///mlruns/mlflow.db
+  artifact_root: mlruns/artifacts
+  experiment_name: germany-daily-load
+  registered_model_name: germany-daily-load
+  run_name: holdout-backtest
