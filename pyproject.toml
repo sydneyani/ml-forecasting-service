@@ -38,6 +38,7 @@ forecast-train = "forecasting.training.backtest:main"
 forecast-download = "forecasting.data.download:main"
 forecast-register = "forecasting.tracking.register:main"
 forecast-serve = "forecasting.serving.__main__:main"
+forecast-drift = "forecasting.monitoring.drift:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

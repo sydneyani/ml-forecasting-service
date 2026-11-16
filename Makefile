@@ -26,3 +26,6 @@ register:
 
 serve:
 	$(PYTHON) -m forecasting.serving
+
+drift:
+	$(PYTHON) -m forecasting.monitoring.drift
