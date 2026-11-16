@@ -15,4 +15,24 @@ python -m forecasting.training --config configs/train.yaml
 
 `configs/ci.yaml` is the same protocol with a two-trial search. The backtest writes `reports/backtest_results.json` and the champion artifact under `models/champion/`. The daily file is vendored at `data/raw/opsd_germany_daily.csv`; `python -m forecasting.data.download` checks it against the pinned SHA-256.
 
-The published metrics in `reports/` are the output of that command. Serving, MLflow, drift checks, and the longer write-up sit on top of this training path.
+The published metrics in `reports/` are the output of that command.
+
+## Track
+
+`configs/train.yaml` logs the run to a local SQLite-backed MLflow store and registers the model under the alias `champion`. A file-only `mlruns` store cannot host the registry. To record the champion that is already in the tree, without another search:
+
+```bash
+python -m forecasting.tracking.register
+```
+
+## Serve
+
+The API loads `models/champion`. It does not call MLflow at request time.
+
+```bash
+python -m forecasting.serving
+curl -s localhost:8000/health
+curl -s localhost:8000/ready
+```
+
+`POST /predict` takes a target date and daily history. Features are built with the same function the backtest uses. `POST /predict/batch` scores several dates from one history and does not feed predictions back in as later actuals. There is no authentication on this demo.
